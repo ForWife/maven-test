@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.neu.mapper.UserinfoMapper;
 import com.neu.po.Userinfo;
@@ -30,6 +31,7 @@ public class UserinfoServiceBean implements UserinfoService {
 	}
 
 	@Override
+	@Transactional
 	public Boolean addUserinfo(Userinfo userinfo) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("....UserinfoServiceBean................addUserinfo....");

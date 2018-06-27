@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
-		http://www.springframework.org/schema/mvc 
-		http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd 
-		http://www.springframework.org/schema/context 
-		http://www.springframework.org/schema/context/spring-context-4.3.xsd 
-		http://www.springframework.org/schema/aop 
-		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd 
-		http://www.springframework.org/schema/tx 
-		http://www.springframework.org/schema/tx/spring-tx-4.3.xsd"> 
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+
 		
 		
 <!-- <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -80,15 +81,20 @@
 </bean>
 
 <!-- 配置事务通知 -->
-<tx:advice id="txAdvice" transaction-manager="txm">
+
+
+<tx:annotation-driven  transaction-manager="txm"/>
+
+
+<!-- <tx:advice id="txAdvice" transaction-manager="txm"> -->
 	<!-- 配置事务的传播特性 -->
-	<tx:attributes>
+	<!-- <tx:attributes>
 	<tx:method name="save*" propagation="REQUIRED"/>
 	<tx:method name="update*" propagation="REQUIRED"/>
 	<tx:method name="delete*" propagation="REQUIRED"/>
 	<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
 	</tx:attributes>
-	</tx:advice>
+	</tx:advice> -->
 <!--
 配置事务传播特性
 REQUIRED 支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。常用于DML语句的操作
@@ -109,9 +115,9 @@ NESTED 如果当前存在事务，则在嵌套事务内执行。如果当前没�
 	
 	<!-- 通过aop切面来控制事务 -->
 	<!-- 织入点语法 -->
-	<aop:config>
+	<!-- <aop:config>
 	<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.neu.service.impl.*.*(..))"/>
-	</aop:config>
+	</aop:config> -->
 	
 	
 	
