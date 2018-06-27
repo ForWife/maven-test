@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.mapper.UserinfoMapper">
+<select id="findAll" resultType="com.neu.po.Userinfo">
+	select * from userinfo order by user_id desc
+</select>
+<update id="jiaNum" parameterType="com.neu.po.Userinfo">
+	UPDATE userinfo SET number = number+#{number} WHERE user_name = #{user_name}
+</update>
+<update id="jianNum" parameterType="com.neu.po.Userinfo">
+	UPDATE userinfo SET number = number-#{number} WHERE user_name = #{user_name}
+</update>
+
+<select id="showByPage" parameterType="Map" resultType="com.neu.po.Userinfo">
+	SELECT * FROM userinfo LIMIT #{head},#{perPageCount};
+</select>
+<update id="addUser" parameterType="com.neu.po.Userinfo">
+	INSERT INTO userinfo (user_name,pwd,number,other) VALUES (#{user_name},#{pwd},#{number},#{other})
+</update>
+<select id="getUserinfoCount" resultType="int">
+	SELECT COUNT(*) from userinfo 
+</select>
+<select id="getUserinfoByPage" resultType="com.neu.po.Userinfo" parameterType="Map">
+	SELECT * from userinfo LIMIT #{head},{perPageCount}
+</select>
+
+
+
+	<!-- <select id="findCount"  resultType="int" >
+		select count(*) from message 
+	</select>
+	
+	<select id="getNameByID" parameterType="int" resultType="java.lang.String" >
+		select name from message where id=#{id}
+	</select>
+	
+	<select id="getMessageById" parameterType="int" resultType="com.neu.bean.Message">
+		select * from message where id=#{id}
+	</select>
+	
+	<select id="getMessageName" parameterType="int" resultType="com.neu.bean.Message">
+		select id,name from message where id=#{id}
+	</select>
+	
+	<select id="getAll"  resultType="com.neu.bean.Message">返回值写的是list里的繁星
+		select * from message limit 0,10
+	</select>
+	 <select id="findUserBy" parameterType="com.neu.bean.Userinfo" resultType="com.neu.bean.Userinfo" >
+		select * from userinfo where user_name=#{name} and pwd=#{password}
+	</select> 
+
+	<insert id="addMessage" parameterType="com.neu.bean.Message">
+		INSERT INTO message(id,name,title,contxt,time) VALUES (NULL,#{name},#{title},#{contxt},NOW())
+	</insert>
+	
+	<select id="getUnameByID" parameterType="int" resultType="java.lang.String" >
+		select username from userinfo where id=#{id}
+	</select>
+	<select id="getCount"  resultType="int" >
+		select count(*) from userinfo 
+	</select>
+	<select id="getUserinfoById" parameterType="int" resultType="com.neusoft.bean.Userinfo">
+		select * from userinfo where id=#{id}
+	</select>
+	</select>
+	<select id="getUserinfoById" parameterType="int" resultType="com.neusoft.bean.Userinfo">
+		select * from userinfo where id=#{id}
+	</select>
+	<select id="getUserinfoById2" parameterType="int" resultType="com.neusoft.bean.Userinfo">
+		select username,pwd from userinfo where id=#{id}
+	</select>
+	<select id="findAll" resultType="com.neusoft.bean.Userinfo">
+		select * from userinfo 
+	</select>
+	<select id="findUserByVo" parameterType="com.neusoft.vo.LoginVO" resultType="com.neusoft.bean.Userinfo" >
+		select * from userinfo where username=#{userName} and pwd=#{pwd}
+	</select>
+	
+	<insert id="addUserinfo" parameterType="com.neusoft.bean.Userinfo">
+		insert into userinfo(id,username,pwd)  values (#{id} ,#{username}  , #{pwd})
+	</insert> -->
+	 
+</mapper>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.js">
+</script>
+<script >
+
+	
+	$(function() {
+		$("#btn_upload").click(function() {
+			var dataForm = new FormData(document.getElementById("myform"));
+			/* 发送ajax请求 */
+			$.ajax({
+				url:"test/uploadajax",
+				type:"post",
+				data:dataForm,
+				processData:false,
+				ContentType:false,
+				dataType:"json",
+				success:function(data){
+					alert(data.result);
+				},failed(data){
+					console.log(data);
+					alert(data.result);
+				}
+					
+			})
+		})
+	})
+</script>
+</head>
+<body>
+<form id="myform"  method="post" enctype="multipart/form-data">
+	<input type="text" name="username"><br>
+	<input type="text" name="pwd"><br>
+	<input type="file" name="upload" ><!--multiple变成多选提交  --><br>
+	<button type="submit" id="btn_upload">提交</button>
+	
+</form>
+
+</body>
+</html>

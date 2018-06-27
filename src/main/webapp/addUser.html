@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>add user</title>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.js">
+ </script>
+<script> 
+	$(function() {
+		$("#btn_submit").click(function(){
+			
+				/* get 4 value */
+				var user_name = $("#user_name").val();
+				var pwd = $("#pwd").val();
+				var number = $("#number").val();
+				var other = $("#other").val();
+				/* send ajax */
+				
+				$.ajax({
+					url:"test/adduser",
+					type:"post",
+					data:{user_name:user_name,pwd:pwd,number:number,other:other},
+					dataType:"json",/*帮转成json格式 */
+					success:function(data){
+						alert(data.result); /*回来看*/
+						console.log(data);
+						
+					}
+				})
+		})
+	})
+</script>
+</head>
+<body>
+	<form action="">
+		<input id="user_name" type="text" placeholder="请输入用户名"><br>
+		<input id="pwd" type="text" placeholder="请输入密码"><br>
+		<input id="number" type="text" placeholder="请输入初始金额"><br>
+		<input id="other" type="text" placeholder="请输入备注"><br>
+		<button id="btn_submit" type="submit" >提交</button>
+		
+	</form>
+</body>
+</html>

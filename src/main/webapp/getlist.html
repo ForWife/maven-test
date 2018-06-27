@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.js">
+</script>
+<script >
+ $(function(){
+	 /* 
+	 1.send ajax request
+	 html路径分为相对路径和绝对路径
+	 绝对路径前有：/
+	 相对路径：前无/ 后加路径
+	 
+	 */
+	 $.ajax({
+		 url:"test/ajax.action",
+		 success:function(data){
+			 console.log(data)
+			 for(var i=0;i<data.length;i++){
+				 var tr = '<tr>';
+				 tr += '<td>'+data[i].user_id+'</td>';
+				 tr += '<td>'+data[i].user_name+'</td>';
+				 tr += '<td>'+data[i].pwd+'</td>';
+				 tr += '<td>'+data[i].number+'</td>';
+				 tr += '<td>'+data[i].other+'</td>';
+				 tr += '<tr>';
+				 
+				 $("#tab").append(tr);
+			 }
+		 },
+		 error:function(data){
+			 console.log(data)
+		 }
+	 
+	 })
+ })
+ 
+</script>
+</head>
+<body>
+<table id="tab">
+	<tr>
+		<th>用户编号</th>
+		<th>用户姓名</th>
+		<th>用户密码</th>
+		<th>用户余额</th>
+		<th>用户其他信息</th>
+	</tr>
+</table>
+</body>
+</html>
